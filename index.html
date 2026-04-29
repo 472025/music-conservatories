@@ -204,23 +204,25 @@ footer strong{color:var(--muted);}
 </div>
 
 <footer>
-  <strong>Sources:</strong> Institutional websites, IPEDS, NASM, public reporting ~2023&ndash;2024. Colburn conservatory established 2003; school founded 1950. Colburn endowment is estimated. Eastman and Peabody figures are estimated school-specific allocations, not parent university totals. Oberlin data is conservatory-only. Boston Conservatory at Berklee excluded from this ranking as its post-2016 merger focus shifted toward music theater and dance rather than classical conservatory training.
+  <strong>Endowment sources (★ = verified, ~ = estimated):</strong> Curtis ★ IPEDS FY2023 $207M, est. ~$220M post-2025 campaign. Juilliard ★ IPEDS FY2023 $1.32B. NEC ★ audited financials FY2024 $164.5M. Oberlin ★ institutional financial report FY2024 $1,270.5M (full college). MSM ★ IPEDS FY2023 $34.8M. SFCM ★ IPEDS FY2023 $51.6M. CIM ★ IPEDS FY2023 $50.9M. Colburn ~ estimated (not IPEDS-reporting). Eastman and Peabody ~ estimated school-specific shares of parent university endowments (U of Rochester $3.7B; JHU $9.7B). Oberlin and Colburn per-student figures use conservatory enrollment only against the full institutional endowment. <strong>Aid note:</strong> NEC aid verified from FY2024 audited financials ($19.9M total / ~750 students = ~$27K). Peabody now meets 100% of demonstrated need without loans for domestic undergrads (effective fall 2024). Eastman awards merit scholarships to all admitted undergrads; avg aid package ~$52K among recipients per College Board. Other aid figures are estimates based on IPEDS net price data and institutional reporting. All figures ~2023&ndash;2024.
 </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const RAW=[
-  {rank:1, name:"Curtis Institute",         abbr:"Curtis",    city:"Philadelphia, PA",  founded:1924, sM:175,  sO:0,   fM:155, fO:10, end:250,  tui:0,     rb:18000, fees:4200, aid:55000},
-  {rank:2, name:"Juilliard",                abbr:"Juilliard", city:"New York, NY",       founded:1905, sM:580,  sO:320, fM:270, fO:90, end:1400, tui:54500, rb:21000, fees:3500, aid:28000},
-  {rank:3, name:"Colburn School",           abbr:"Colburn",   city:"Los Angeles, CA",    founded:1950, sM:120,  sO:0,   fM:65,  fO:5,  end:350,  tui:0,     rb:22000, fees:2000, aid:77000},
-  {rank:4, name:"New England Conservatory", abbr:"NEC",       city:"Boston, MA",         founded:1867, sM:750,  sO:0,   fM:210, fO:15, end:175,  tui:55200, rb:18500, fees:2500, aid:22000},
-  {rank:5, name:"Eastman School of Music",  abbr:"Eastman",   city:"Rochester, NY",      founded:1921, sM:950,  sO:0,   fM:95,  fO:30, end:150,  tui:62000, rb:15000, fees:2500, aid:25000},
-  {rank:6, name:"Peabody Institute",        abbr:"Peabody",   city:"Baltimore, MD",      founded:1857, sM:650,  sO:0,   fM:160, fO:20, end:100,  tui:57500, rb:17000, fees:2500, aid:20000},
-  {rank:7, name:"Oberlin Conservatory",     abbr:"Oberlin",   city:"Oberlin, OH",        founded:1865, sM:600,  sO:0,   fM:70,  fO:0,  end:1100, tui:62000, rb:18000, fees:2500, aid:40000},
-  {rank:8, name:"Manhattan School",         abbr:"MSM",       city:"New York, NY",       founded:1917, sM:980,  sO:20,  fM:285, fO:25, end:90,   tui:56000, rb:22000, fees:3000, aid:18000},
-  {rank:9, name:"SF Conservatory",          abbr:"SFCM",      city:"San Francisco, CA",  founded:1917, sM:450,  sO:0,   fM:135, fO:15, end:80,   tui:57000, rb:24000, fees:3000, aid:21000},
-  {rank:10,name:"Cleveland Inst. of Music", abbr:"CIM",       city:"Cleveland, OH",      founded:1920, sM:425,  sO:0,   fM:145, fO:10, end:120,  tui:51000, rb:14000, fees:2000, aid:22000},
+  // end = endowment $M | aid = avg institutional grant/student (all enrolled, not just recipients)
+  // ★ = verified from audited financials or IPEDS    ~ = estimated
+  {rank:1, name:"Curtis Institute",         abbr:"Curtis",    city:"Philadelphia, PA",  founded:1924, sM:175,  sO:0,   fM:155, fO:10, end:220,  tui:0,     rb:18000, fees:4200, aid:55000, endNote:"★ IPEDS FY2023: $207M; est. ~$220M post-2025 campaign"},
+  {rank:2, name:"Juilliard",                abbr:"Juilliard", city:"New York, NY",       founded:1905, sM:580,  sO:320, fM:270, fO:90, end:1320, tui:54500, rb:21000, fees:3500, aid:28000, endNote:"★ IPEDS FY2023: $1.32B"},
+  {rank:3, name:"Colburn School",           abbr:"Colburn",   city:"Los Angeles, CA",    founded:1950, sM:120,  sO:0,   fM:65,  fO:5,  end:350,  tui:0,     rb:22000, fees:2000, aid:77000, endNote:"~ Estimated; no public IPEDS filing"},
+  {rank:4, name:"New England Conservatory", abbr:"NEC",       city:"Boston, MA",         founded:1867, sM:750,  sO:0,   fM:210, fO:15, end:165,  tui:55200, rb:18500, fees:2500, aid:27000, endNote:"★ Audited FS FY2024: $164.5M"},
+  {rank:5, name:"Eastman School of Music",  abbr:"Eastman",   city:"Rochester, NY",      founded:1921, sM:950,  sO:0,   fM:95,  fO:30, end:150,  tui:62000, rb:15000, fees:2500, aid:35000, endNote:"~ Est. school-specific share; U of Rochester total: $3.7B"},
+  {rank:6, name:"Peabody Institute",        abbr:"Peabody",   city:"Baltimore, MD",      founded:1857, sM:650,  sO:0,   fM:160, fO:20, end:100,  tui:57500, rb:17000, fees:2500, aid:28000, endNote:"~ Est. school-specific share; JHU total: $9.7B"},
+  {rank:7, name:"Oberlin Conservatory",     abbr:"Oberlin",   city:"Oberlin, OH",        founded:1865, sM:600,  sO:0,   fM:70,  fO:0,  end:1271, tui:62000, rb:18000, fees:2500, aid:40000, endNote:"★ Oberlin College FY2024: $1,270.5M (full institution)"},
+  {rank:8, name:"Manhattan School",         abbr:"MSM",       city:"New York, NY",       founded:1917, sM:980,  sO:20,  fM:285, fO:25, end:35,   tui:56000, rb:22000, fees:3000, aid:16000, endNote:"★ IPEDS FY2023: $34.8M"},
+  {rank:9, name:"SF Conservatory",          abbr:"SFCM",      city:"San Francisco, CA",  founded:1917, sM:450,  sO:0,   fM:135, fO:15, end:52,   tui:57000, rb:24000, fees:3000, aid:21000, endNote:"★ IPEDS FY2023: $51.6M"},
+  {rank:10,name:"Cleveland Inst. of Music", abbr:"CIM",       city:"Cleveland, OH",      founded:1920, sM:425,  sO:0,   fM:145, fO:10, end:51,   tui:51000, rb:14000, fees:2000, aid:20000, endNote:"★ IPEDS FY2023: $50.9M"},
 ];
 
 RAW.forEach(s=>{
