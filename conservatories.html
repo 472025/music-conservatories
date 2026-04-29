@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Music Conservatories — Landscape 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4EF;--surf:#EDEAE3;--card:#FFFFFF;--bdr:rgba(0,0,0,0.08);--bdr2:rgba(0,0,0,0.18);
+  --txt:#18182B;--muted:#6B6882;--dim:#A09CB0;
+  --accent:#7A5A10;--blue:#2563EB;--green:#16A34A;--amber:#D97706;--red:#DC2626;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:14px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',system-ui,sans-serif;line-height:1.55;min-height:100vh;}
+.wrap{max-width:1160px;margin:0 auto;padding:52px 28px 80px;}
+header{margin-bottom:44px;border-bottom:1px solid var(--bdr);padding-bottom:32px;}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);margin-bottom:10px;}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:46px;font-weight:500;line-height:1.08;color:var(--txt);margin-bottom:10px;}
+h1 em{font-style:italic;color:var(--accent);}
+.subhead{font-size:13px;color:var(--muted);max-width:640px;line-height:1.65;}
+.tabs{display:flex;border-bottom:1px solid var(--bdr);margin-bottom:32px;overflow-x:auto;gap:0;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:11px 20px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;
+  color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;
+  transition:color .18s,border-color .18s;}
+.tab.on{color:var(--txt);border-bottom-color:var(--accent);}
+.tab:hover:not(.on){color:var(--txt);}
+.sec{display:none;}
+.sec.on{display:block;}
+.sort-bar{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
+.sort-bar label{font-size:12px;color:var(--muted);margin-right:2px;}
+.sbtn{padding:5px 13px;background:var(--card);border:1px solid var(--bdr);border-radius:5px;
+  color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.sbtn.on{border-color:var(--accent);color:var(--accent);background:rgba(196,154,56,0.08);}
+.sbtn:hover:not(.on){color:var(--txt);border-color:var(--bdr2);}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--bdr);border-radius:10px;background:var(--surf);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{padding:12px 14px;text-align:right;font-size:11px;font-weight:500;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--bdr);
+  background:var(--card);cursor:pointer;user-select:none;white-space:nowrap;transition:color .15s;}
+thead th.left{text-align:left;}
+thead th:hover{color:var(--txt);}
+thead th.sorted{color:var(--accent);}
+tbody tr{border-bottom:1px solid var(--bdr);transition:background .12s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,0.025);}
+td{padding:11px 14px;white-space:nowrap;text-align:right;vertical-align:middle;}
+td.left{text-align:left;}
+.rk{color:var(--dim);font-size:12px;}
+.iname{font-weight:500;color:var(--txt);}
+.icity{font-size:11px;color:var(--muted);margin-top:1px;}
+.yr{color:var(--muted);}
+.pct-cell{display:flex;align-items:center;justify-content:flex-end;gap:8px;}
+.pct-bar-bg{width:60px;height:4px;background:var(--surf);border-radius:2px;overflow:hidden;flex-shrink:0;}
+.pct-bar-fill{height:100%;border-radius:2px;}
+.pct-num{font-size:12px;color:var(--muted);width:34px;text-align:right;flex-shrink:0;}
+.chart-sec{margin-bottom:40px;}
+.chart-title{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:10px;}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;font-size:12px;color:var(--muted);}
+.li{display:inline-flex;align-items:center;gap:6px;}
+.lsq{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.chart-wrap{position:relative;width:100%;}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:28px;}
+.mc{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:14px 16px;}
+.mlb{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px;}
+.mv{font-size:21px;font-weight:500;color:var(--txt);}
+.ms{font-size:11px;color:var(--muted);margin-top:4px;}
+.disc{font-size:11px;color:var(--dim);margin-top:14px;line-height:1.7;}
+.sect-divider{border:none;border-top:1px solid var(--bdr);margin:36px 0;}
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--bdr);font-size:11px;color:var(--dim);line-height:1.8;}
+footer strong{color:var(--muted);}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--surf);border:1px solid var(--bdr);border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Landscape analysis &middot; Estimated figures ~2024</p>
+  <h1>Top <em>Music</em><br>Conservatories</h1>
+  <p class="subhead">Enrollment, endowment, cost, and financial aid across ten leading institutions. Click column headers to sort the table; use controls above each chart to reorder bars.</p>
+</header>
+
+<div class="tabs">
+  <button class="tab on" onclick="showTab(0)">Institutions</button>
+  <button class="tab"    onclick="showTab(1)">Students &amp; faculty</button>
+  <button class="tab"    onclick="showTab(2)">Endowment</button>
+  <button class="tab"    onclick="showTab(3)">Cost to attend</button>
+  <button class="tab"    onclick="showTab(4)">Scholarships</button>
+</div>
+
+<!-- TAB 0 -->
+<div class="sec on" id="t0">
+  <div class="tbl-wrap">
+    <table><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table>
+  </div>
+  <p class="disc">Ranked by prestige, selectivity, and alumni outcomes — reflects broad professional consensus. Click any column header to sort; click again to reverse. Curtis and Colburn are the only institutions offering full tuition + housing to all conservatory students. Oberlin figures reflect conservatory enrollment only. Eastman and Peabody endowments are estimated school-specific figures (U of Rochester ~$3.7B; Johns Hopkins ~$9.7B). All financials are approximate — sources: institutional websites, IPEDS, NASM ~2023&ndash;2024.</p>
+</div>
+
+<!-- TAB 1 -->
+<div class="sec" id="t1">
+  <div class="sort-bar">
+    <label>Sort:</label>
+    <button class="sbtn on" data-sort="def"  onclick="sortCharts(1,this)">Default rank</button>
+    <button class="sbtn"    data-sort="sM"   onclick="sortCharts(1,this)">Most music students</button>
+    <button class="sbtn"    data-sort="tot"  onclick="sortCharts(1,this)">Most total students</button>
+    <button class="sbtn"    data-sort="fM"   onclick="sortCharts(1,this)">Most music faculty</button>
+    <button class="sbtn"    data-sort="totF" onclick="sortCharts(1,this)">Most total faculty</button>
+  </div>
+  <div class="chart-sec">
+    <div class="chart-title">Students</div>
+    <div class="legend">
+      <span class="li"><span class="lsq" style="background:#3B82F6"></span>Music students</span>
+      <span class="li"><span class="lsq" style="background:rgba(59,130,246,0.28)"></span>Liberal arts / other students</span>
+    </div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="sc" role="img" aria-label="Horizontal stacked bar of students by conservatory">Enrollment ranges from ~120 (Colburn) to ~1,000 (MSM).</canvas></div>
+  </div>
+  <hr class="sect-divider">
+  <div class="chart-sec">
+    <div class="chart-title">Faculty</div>
+    <div class="legend">
+      <span class="li"><span class="lsq" style="background:#16A34A"></span>Music faculty</span>
+      <span class="li"><span class="lsq" style="background:rgba(22,163,74,0.28)"></span>Liberal arts / other faculty</span>
+    </div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="fc" role="img" aria-label="Horizontal stacked bar of faculty by conservatory">Faculty ranges from ~65 (Colburn) to ~360 (MSM).</canvas></div>
+  </div>
+  <p class="disc">Colburn and Curtis are exclusively instrumental/performance conservatories with no liberal arts component. Many Colburn faculty are active LA Philharmonic members. Juilliard and MSM include drama and dance divisions. Oberlin reflects conservatory-only enrollment and faculty. Faculty counts include adjunct and visiting instructors.</p>
+</div>
+
+<!-- TAB 2 -->
+<div class="sec" id="t2">
+  <div class="mg" id="endMetrics"></div>
+  <div class="sort-bar">
+    <label>Sort:</label>
+    <button class="sbtn on" data-sort="end"        onclick="sortCharts(2,this)">By total endowment</button>
+    <button class="sbtn"    data-sort="perStudent" onclick="sortCharts(2,this)">By per-student</button>
+    <button class="sbtn"    data-sort="def"        onclick="sortCharts(2,this)">Default rank</button>
+  </div>
+  <div class="chart-sec">
+    <div class="chart-title">Total endowment</div>
+    <div class="legend"><span class="li"><span class="lsq" style="background:#D97706"></span>Endowment ($M)</span></div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="ec" role="img" aria-label="Horizontal bar chart of total endowment">Juilliard leads at $1.4B; Oberlin at $1.1B.</canvas></div>
+  </div>
+  <hr class="sect-divider">
+  <div class="chart-sec">
+    <div class="chart-title">Endowment per student <span style="font-size:11px;font-weight:400;color:var(--muted);">(conservatory enrollment only for Oberlin &amp; Colburn)</span></div>
+    <div class="legend"><span class="li"><span class="lsq" style="background:#D97706"></span>Per-student endowment</span></div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="epc" role="img" aria-label="Horizontal bar chart of per-student endowment">Colburn leads on per-student basis given its tiny enrollment of ~120.</canvas></div>
+  </div>
+  <p class="disc">Colburn&rsquo;s ~$2.9M per-student figure reflects its very small conservatory (~120 students) against an estimated $350M endowment. Oberlin uses conservatory-only enrollment (600) against the full $1.1B institutional endowment. Eastman and Peabody figures are estimated school-specific allocations only.</p>
+</div>
+
+<!-- TAB 3 -->
+<div class="sec" id="t3">
+  <div class="sort-bar">
+    <label>Sort:</label>
+    <button class="sbtn on" data-sort="coa" onclick="sortCharts(3,this)">By total COA</button>
+    <button class="sbtn"    data-sort="tui" onclick="sortCharts(3,this)">By tuition</button>
+    <button class="sbtn"    data-sort="rb"  onclick="sortCharts(3,this)">By room &amp; board</button>
+    <button class="sbtn"    data-sort="def" onclick="sortCharts(3,this)">Default rank</button>
+  </div>
+  <div class="chart-sec">
+    <div class="legend">
+      <span class="li"><span class="lsq" style="background:#3B82F6"></span>Tuition</span>
+      <span class="li"><span class="lsq" style="background:#16A34A"></span>Room &amp; board</span>
+      <span class="li"><span class="lsq" style="background:rgba(22,163,74,0.45)"></span>Fees &amp; other</span>
+    </div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="cc" role="img" aria-label="Horizontal stacked bar of tuition, room and board, and fees">Curtis and Colburn show dramatically lower COA as tuition-free institutions.</canvas></div>
+  </div>
+  <p class="disc">Curtis charges no tuition; students pay room, board, and fees (~$22K). Colburn charges no tuition and covers room &amp; board for undergrads — student out-of-pocket is fees and personal expenses only (~$8K total). All other figures are list (sticker) prices before financial aid.</p>
+</div>
+
+<!-- TAB 4 -->
+<div class="sec" id="t4">
+  <div class="sort-bar">
+    <label>Sort:</label>
+    <button class="sbtn on" data-sort="aid"        onclick="sortCharts(4,this)">By grant amount</button>
+    <button class="sbtn"    data-sort="pctCovered" onclick="sortCharts(4,this)">By % covered</button>
+    <button class="sbtn"    data-sort="gap"        onclick="sortCharts(4,this)">By remaining gap</button>
+    <button class="sbtn"    data-sort="def"        onclick="sortCharts(4,this)">Default rank</button>
+  </div>
+  <div class="chart-sec">
+    <div class="chart-title">Average institutional grant &mdash; dollar amount</div>
+    <div class="legend">
+      <span class="li"><span class="lsq" style="background:#16A34A"></span>Avg grant / student</span>
+      <span class="li"><span class="lsq" style="background:rgba(100,100,120,0.2)"></span>Remaining gap (uncovered notional COA)</span>
+    </div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="ac" role="img" aria-label="Horizontal stacked bar of average grant vs remaining gap">Colburn leads at ~$77K covering tuition + room/board; Curtis at $55K tuition waiver.</canvas></div>
+  </div>
+  <hr class="sect-divider">
+  <div class="chart-sec">
+    <div class="chart-title">Grant as % of total cost of attendance</div>
+    <div class="legend">
+      <span class="li"><span class="lsq" style="background:#16A34A"></span>% of COA covered by grant</span>
+      <span class="li"><span class="lsq" style="background:rgba(100,100,120,0.2)"></span>% not covered (gap)</span>
+    </div>
+    <div class="chart-wrap" style="height:420px;"><canvas id="pctc" role="img" aria-label="Horizontal 100% stacked bar of percent COA covered vs gap">Colburn covers ~97%; Curtis ~71%; most others cover 22&ndash;48%.</canvas></div>
+  </div>
+  <p class="disc">Colburn covers tuition ($55K notional) + room &amp; board ($22K) for undergrads — notional COA = ~$79K, grant ~$77K = 97% covered. Curtis covers tuition only ($55K notional); room/board/fees (~$22K) remain out-of-pocket. % calculation uses $55K notional tuition for both tuition-free schools. Figures are institutional grant aid only — excludes federal loans, work-study, and outside scholarships.</p>
+</div>
+
+<footer>
+  <strong>Sources:</strong> Institutional websites, IPEDS, NASM, public reporting ~2023&ndash;2024. Colburn conservatory established 2003; school founded 1950. Colburn endowment is estimated. Eastman and Peabody figures are estimated school-specific allocations, not parent university totals. Oberlin data is conservatory-only. Boston Conservatory at Berklee excluded from this ranking as its post-2016 merger focus shifted toward music theater and dance rather than classical conservatory training.
+</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const RAW=[
+  {rank:1, name:"Curtis Institute",         abbr:"Curtis",    city:"Philadelphia, PA",  founded:1924, sM:175,  sO:0,   fM:155, fO:10, end:250,  tui:0,     rb:18000, fees:4200, aid:55000},
+  {rank:2, name:"Juilliard",                abbr:"Juilliard", city:"New York, NY",       founded:1905, sM:580,  sO:320, fM:270, fO:90, end:1400, tui:54500, rb:21000, fees:3500, aid:28000},
+  {rank:3, name:"Colburn School",           abbr:"Colburn",   city:"Los Angeles, CA",    founded:1950, sM:120,  sO:0,   fM:65,  fO:5,  end:350,  tui:0,     rb:22000, fees:2000, aid:77000},
+  {rank:4, name:"New England Conservatory", abbr:"NEC",       city:"Boston, MA",         founded:1867, sM:750,  sO:0,   fM:210, fO:15, end:175,  tui:55200, rb:18500, fees:2500, aid:22000},
+  {rank:5, name:"Eastman School of Music",  abbr:"Eastman",   city:"Rochester, NY",      founded:1921, sM:950,  sO:0,   fM:95,  fO:30, end:150,  tui:62000, rb:15000, fees:2500, aid:25000},
+  {rank:6, name:"Peabody Institute",        abbr:"Peabody",   city:"Baltimore, MD",      founded:1857, sM:650,  sO:0,   fM:160, fO:20, end:100,  tui:57500, rb:17000, fees:2500, aid:20000},
+  {rank:7, name:"Oberlin Conservatory",     abbr:"Oberlin",   city:"Oberlin, OH",        founded:1865, sM:600,  sO:0,   fM:70,  fO:0,  end:1100, tui:62000, rb:18000, fees:2500, aid:40000},
+  {rank:8, name:"Manhattan School",         abbr:"MSM",       city:"New York, NY",       founded:1917, sM:980,  sO:20,  fM:285, fO:25, end:90,   tui:56000, rb:22000, fees:3000, aid:18000},
+  {rank:9, name:"SF Conservatory",          abbr:"SFCM",      city:"San Francisco, CA",  founded:1917, sM:450,  sO:0,   fM:135, fO:15, end:80,   tui:57000, rb:24000, fees:3000, aid:21000},
+  {rank:10,name:"Cleveland Inst. of Music", abbr:"CIM",       city:"Cleveland, OH",      founded:1920, sM:425,  sO:0,   fM:145, fO:10, end:120,  tui:51000, rb:14000, fees:2000, aid:22000},
+];
+
+RAW.forEach(s=>{
+  s.tot       =s.sM+s.sO;
+  s.totF      =s.fM+s.fO;
+  s.coa       =s.tui+s.rb+s.fees;
+  s.notCOA    =(s.tui>0?s.tui:55000)+s.rb+s.fees;
+  s.perStudent=Math.round(s.end*1000/s.tot);
+  s.pctCovered=Math.round(s.aid/s.notCOA*100);
+  s.pctGap    =100-s.pctCovered;
+  s.gap       =Math.max(0,s.notCOA-s.aid);
+  s.musicFPS  =parseFloat((s.fM/s.tot).toFixed(2));
+  s.otherFPS  =parseFloat((s.fO/s.tot).toFixed(2));
+});
+
+/* Table */
+const COLS=[
+  {k:'rank',      l:'#',           left:true,  fmt:v=>`<span class="rk">#${v}</span>`},
+  {k:'name',      l:'Institution', left:true,  fmt:(v,r)=>`<div class="iname">${v}</div><div class="icity">${r.city}</div>`},
+  {k:'founded',   l:'Founded',     left:false, fmt:v=>`<span class="yr">${v}</span>`},
+  {k:'tot',       l:'Students',          left:false, fmt:v=>v.toLocaleString()},
+  {k:'totF',      l:'Faculty',           left:false, fmt:v=>v.toLocaleString()},
+  {k:'musicFPS',  l:'Music fac/student', left:false, fmt:(v,r)=>{
+    const max=0.89,pct=Math.round(v/max*100);
+    const c=v>=0.5?'var(--green)':v>=0.25?'var(--amber)':'var(--red)';
+    return `<div class="pct-cell"><div class="pct-bar-bg"><div class="pct-bar-fill" style="width:${pct}%;background:${c}"></div></div><span class="pct-num">${v.toFixed(2)}</span></div>`;
+  }},
+  {k:'otherFPS',  l:'Other fac/student', left:false, fmt:(v,r)=>{
+    const max=0.10,pct=Math.min(100,Math.round(v/max*100));
+    return v===0?`<span style="color:var(--dim)">—</span>`:`<div class="pct-cell"><div class="pct-bar-bg"><div class="pct-bar-fill" style="width:${pct}%;background:#3B82F6"></div></div><span class="pct-num">${v.toFixed(2)}</span></div>`;
+  }},
+  {k:'end',       l:'Endow. ($M)', left:false, fmt:v=>'$'+v.toLocaleString()+'M'},
+  {k:'perStudent',l:'$/Student',   left:false, fmt:v=>v>=1000?'$'+(v/1000).toFixed(1)+'M':'$'+v+'K'},
+  {k:'coa',       l:'Total COA',   left:false, fmt:(v,r)=>r.tui===0?`<span style="color:var(--green)">$${v.toLocaleString()}</span>`:'$'+v.toLocaleString()},
+  {k:'aid',       l:'Avg grant',   left:false, fmt:v=>'$'+v.toLocaleString()},
+  {k:'pctCovered',l:'% Covered',   left:false, fmt:v=>{
+    const c=v>=70?'var(--green)':v>=40?'var(--amber)':'var(--red)';
+    return `<div class="pct-cell"><div class="pct-bar-bg"><div class="pct-bar-fill" style="width:${v}%;background:${c}"></div></div><span class="pct-num">${v}%</span></div>`;
+  }},
+];
+let sortKey='rank',sortDir=1;
+function buildThead(){
+  const tr=document.getElementById('thead');
+  COLS.forEach(c=>{
+    const th=document.createElement('th');
+    if(c.left)th.classList.add('left');
+    th.dataset.k=c.k;
+    th.onclick=()=>{if(sortKey===c.k)sortDir*=-1;else{sortKey=c.k;sortDir=-1;}renderTable();};
+    tr.appendChild(th);
+  });
+}
+function renderTable(){
+  const sorted=[...RAW].sort((a,b)=>{
+    const av=a[sortKey],bv=b[sortKey];
+    if(typeof av==='string')return av.localeCompare(bv)*sortDir;
+    return (av-bv)*sortDir;
+  });
+  document.querySelectorAll('#thead th').forEach(th=>{
+    const c=COLS.find(x=>x.k===th.dataset.k);
+    const isSorted=th.dataset.k===sortKey;
+    th.classList.toggle('sorted',isSorted);
+    th.textContent=c.l+(isSorted?(sortDir===1?' ↑':' ↓'):'');
+  });
+  const tbody=document.getElementById('tbody');
+  tbody.innerHTML='';
+  sorted.forEach(row=>{
+    const tr=document.createElement('tr');
+    COLS.forEach(c=>{
+      const td=document.createElement('td');
+      if(c.left)td.classList.add('left');
+      td.innerHTML=c.fmt(row[c.k],row);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+buildThead();renderTable();
+
+/* Charts */
+const TC=()=>'#6B6882',YC=()=>'rgba(24,24,43,0.75)',GC=()=>'rgba(0,0,0,0.06)';
+function chartOpts(xLabel,stacked,tooltipCb,xTickCb){
+  return{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,animation:{duration:350},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(255,255,255,0.97)',borderColor:'rgba(0,0,0,0.1)',
+      borderWidth:1,titleColor:'#18182B',bodyColor:'#6B6882',padding:10,
+      callbacks:{label:tooltipCb||(ctx=>` ${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString()}`)}}},
+    scales:{
+      x:{stacked:!!stacked,title:{display:true,text:xLabel,color:TC(),font:{size:11}},grid:{color:GC()},
+        ticks:{color:TC(),font:{size:11},callback:xTickCb||undefined},border:{color:'rgba(0,0,0,0.1)'}},
+      y:{stacked:!!stacked,ticks:{color:YC(),font:{size:11}},grid:{display:false},border:{color:'rgba(0,0,0,0.1)'}}
+    }
+  };
+}
+const CH={};
+function buildCharts(){
+  const L=RAW.map(s=>s.abbr);
+  CH.sc=new Chart(document.getElementById('sc'),{type:'bar',data:{labels:L,datasets:[
+    {label:'Music students',data:RAW.map(s=>s.sM),backgroundColor:'#3B82F6'},
+    {label:'Other students',data:RAW.map(s=>s.sO),backgroundColor:'rgba(59,130,246,0.18)'}
+  ]},options:chartOpts('Students',true)});
+  CH.fc=new Chart(document.getElementById('fc'),{type:'bar',data:{labels:L,datasets:[
+    {label:'Music faculty',data:RAW.map(s=>s.fM),backgroundColor:'#16A34A'},
+    {label:'Other faculty',data:RAW.map(s=>s.fO),backgroundColor:'rgba(22,163,74,0.18)'}
+  ]},options:chartOpts('Faculty',true)});
+  CH.ec=new Chart(document.getElementById('ec'),{type:'bar',data:{labels:L,datasets:[
+    {label:'Endowment',data:RAW.map(s=>s.end),backgroundColor:'#D97706'}
+  ]},options:chartOpts('USD millions',false,ctx=>` $${ctx.parsed.x.toLocaleString()}M`,v=>'$'+v.toLocaleString()+'M')});
+  CH.epc=new Chart(document.getElementById('epc'),{type:'bar',data:{labels:L,datasets:[
+    {label:'Per student',data:RAW.map(s=>s.perStudent),backgroundColor:'#D97706'}
+  ]},options:chartOpts('Per student',false,ctx=>` $${ctx.parsed.x.toLocaleString()}K`,v=>v>=1000?'$'+(v/1000).toFixed(1)+'M':'$'+v+'K')});
+  CH.cc=new Chart(document.getElementById('cc'),{type:'bar',data:{labels:L,datasets:[
+    {label:'Tuition',     data:RAW.map(s=>s.tui), backgroundColor:'#3B82F6'},
+    {label:'Room & board',data:RAW.map(s=>s.rb),  backgroundColor:'#16A34A'},
+    {label:'Fees',        data:RAW.map(s=>s.fees), backgroundColor:'rgba(22,163,74,0.35)'}
+  ]},options:chartOpts('Total cost (USD)',true,ctx=>` ${ctx.dataset.label}: $${ctx.parsed.x.toLocaleString()}`,v=>'$'+(v/1000).toFixed(0)+'K')});
+  CH.ac=new Chart(document.getElementById('ac'),{type:'bar',data:{labels:L,datasets:[
+    {label:'Avg grant',data:RAW.map(s=>s.aid),backgroundColor:'#16A34A'},
+    {label:'Gap',      data:RAW.map(s=>s.gap), backgroundColor:'rgba(100,100,120,0.14)'}
+  ]},options:chartOpts('USD',true,ctx=>` ${ctx.dataset.label}: $${ctx.parsed.x.toLocaleString()}`,v=>'$'+(v/1000).toFixed(0)+'K')});
+  CH.pctc=new Chart(document.getElementById('pctc'),{type:'bar',data:{labels:L,datasets:[
+    {label:'% covered',data:RAW.map(s=>s.pctCovered),backgroundColor:'#16A34A'},
+    {label:'% gap',    data:RAW.map(s=>s.pctGap),    backgroundColor:'rgba(100,100,120,0.14)'}
+  ]},options:chartOpts('% of total COA (notional)',true,ctx=>` ${ctx.dataset.label}: ${ctx.parsed.x}%`,v=>v+'%')});
+}
+buildCharts();
+
+/* Endowment metric cards */
+const emk=document.getElementById('endMetrics');
+const maxPS=Math.max(...RAW.map(s=>s.perStudent));
+const maxPSName=RAW.find(s=>s.perStudent===maxPS).name;
+[
+  {l:'Largest endowment',   v:'$1,400M', s:'Juilliard'},
+  {l:'Highest per student', v:'$'+(maxPS/1000).toFixed(1)+'M', s:maxPSName},
+  {l:'Smallest endowment',  v:'$80M',    s:'SFCM'},
+  {l:'Lowest per student',  v:'$90K',    s:'MSM'},
+].forEach(m=>{
+  const d=document.createElement('div');d.className='mc';
+  d.innerHTML=`<div class="mlb">${m.l}</div><div class="mv">${m.v}</div><div class="ms">${m.s}</div>`;
+  emk.appendChild(d);
+});
+
+/* Tab switching */
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===n));
+  document.querySelectorAll('.sec').forEach((s,i)=>s.classList.toggle('on',i===n));
+}
+
+/* Chart sort */
+function sortCharts(tab,btn){
+  const key=btn.dataset.sort;
+  btn.closest('.sort-bar').querySelectorAll('.sbtn').forEach(b=>b.classList.toggle('on',b===btn));
+  const D=key==='def'?[...RAW]:[...RAW].sort((a,b)=>b[key]-a[key]);
+  const L=D.map(s=>s.abbr);
+  function upd(c,sets){c.data.labels=L;sets.forEach((v,i)=>c.data.datasets[i].data=v);c.update();}
+  if(tab===1){upd(CH.sc,[D.map(s=>s.sM),D.map(s=>s.sO)]);upd(CH.fc,[D.map(s=>s.fM),D.map(s=>s.fO)]);}
+  else if(tab===2){upd(CH.ec,[D.map(s=>s.end)]);upd(CH.epc,[D.map(s=>s.perStudent)]);}
+  else if(tab===3){upd(CH.cc,[D.map(s=>s.tui),D.map(s=>s.rb),D.map(s=>s.fees)]);}
+  else if(tab===4){upd(CH.ac,[D.map(s=>s.aid),D.map(s=>s.gap)]);upd(CH.pctc,[D.map(s=>s.pctCovered),D.map(s=>s.pctGap)]);}
+}
+</script>
+</body>
+</html>
